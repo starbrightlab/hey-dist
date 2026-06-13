@@ -10,19 +10,19 @@
     },
     "patch": {
       "url": "https://github.com/starbrightlab/hey-dist/releases/latest/download/falcon.bsdiff",
-      "sha256": "1fd8412c874465c09fa172760da9fa4b9deb8f3a450ad88cf578b02a50fd00d0",
+      "sha256": "739da8cff291c4b01874e40942cf781773545b23dbe28676108a2276abd4ab53",
       "tool": "bspatch",
       "note": "Surgical diff: only classes.dex (the 5 code patches) + AndroidManifest.xml differ from stock; all other entries are byte-identical."
     },
     "result": {
-      "sha256": "76133f807e492e46aaf58e6ae503e623a93af840eaa3eccfb8630f1ecab3268d",
+      "sha256": "3c35666c5ade481138c2506f70b1fa89170d54f8a0fb93fd82cc14310dfac299",
       "patches": [
         "getCurrentUser->0",
         "getIsAnonymous->FALSE",
         "audioSource HOTWORD->VOICE_RECOGNITION",
         "ExtListenReceiver(LISTEN)",
         "SimStateMachine TURN_DONE",
-        "drop dee.app-shared <permission> declares (coexistence)"
+        "drop 7 dee.app-shared <permission> declares (coexistence: 5 aloha + extensions.EXTENSION/SKILL)"
       ],
       "coexistence_note": "Drops the <permission> declarations falcon shares with the pinned com.amazon.dee.app so both install. Conflict set is per-dee.app-version; this build targets the pinned consumer build. Standalone (free) falcon is unaffected \u2014 same-UID calls don't need them."
     }
