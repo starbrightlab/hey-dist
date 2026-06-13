@@ -10,11 +10,12 @@
     },
     "patch": {
       "url": "https://github.com/starbrightlab/hey-dist/releases/latest/download/falcon.bsdiff",
-      "sha256": "6439a616c1b948d8edebe2db0f0239b70a6ece1bc8c3676338b3741d20a131a5",
-      "tool": "bspatch"
+      "sha256": "1fd8412c874465c09fa172760da9fa4b9deb8f3a450ad88cf578b02a50fd00d0",
+      "tool": "bspatch",
+      "note": "Surgical diff: only classes.dex (the 5 code patches) + AndroidManifest.xml differ from stock; all other entries are byte-identical."
     },
     "result": {
-      "sha256": "861261445ddd4e42ae80d4646c9beb586ec93035ef91a0391ad87b965ab5d337",
+      "sha256": "76133f807e492e46aaf58e6ae503e623a93af840eaa3eccfb8630f1ecab3268d",
       "patches": [
         "getCurrentUser->0",
         "getIsAnonymous->FALSE",
