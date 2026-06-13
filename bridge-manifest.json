@@ -15,13 +15,21 @@
     },
     "result": {
       "sha256": "861261445ddd4e42ae80d4646c9beb586ec93035ef91a0391ad87b965ab5d337",
-      "patches": ["getCurrentUser->0", "getIsAnonymous->FALSE", "audioSource HOTWORD->VOICE_RECOGNITION", "ExtListenReceiver(LISTEN)", "SimStateMachine TURN_DONE", "drop dee.app-shared <permission> declares (coexistence)"],
-      "coexistence_note": "Drops the <permission> declarations falcon shares with the pinned com.amazon.dee.app so both install. Conflict set is per-dee.app-version; this build targets the pinned consumer build. Standalone (free) falcon is unaffected — same-UID calls don't need them."
+      "patches": [
+        "getCurrentUser->0",
+        "getIsAnonymous->FALSE",
+        "audioSource HOTWORD->VOICE_RECOGNITION",
+        "ExtListenReceiver(LISTEN)",
+        "SimStateMachine TURN_DONE",
+        "drop dee.app-shared <permission> declares (coexistence)"
+      ],
+      "coexistence_note": "Drops the <permission> declarations falcon shares with the pinned com.amazon.dee.app so both install. Conflict set is per-dee.app-version; this build targets the pinned consumer build. Standalone (free) falcon is unaffected \u2014 same-UID calls don't need them."
     }
   },
   "millennium": {
     "package": "com.millennium",
     "url": "https://github.com/starbrightlab/hey-dist/releases/latest/download/millennium.apk",
-    "note": "Free wake-word build. Not yet published — pending release signing."
+    "sha256": "b7278e24eb1bc58c7fa95ec98f03efd3781708ec5a4c6707e5f28a07e79f7279",
+    "note": "Free wake-word build, signed with the dedicated millennium release key (cert sha256 7fe7883592d47c4d55e4f176c52090fca2711c00fc4d53787636a2615b810f42)."
   }
 }
