@@ -1,0 +1,3 @@
+# Release artifacts are uploaded to GitHub Releases, not committed (keeps the repo small).
+*.bsdiff
+*.apk

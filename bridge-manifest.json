@@ -1,0 +1,27 @@
+{
+  "schema": 2,
+  "comment": "Data, not code. Maps the PUBLIC stock falcon APK + our binary patch so a client can reconstruct our patched+signed build byte-for-byte. Immortal's provisioner (provision.sh --alexa) and the future on-device installer read this. One falcon build serves all Portal families (the amazon_alexa APK is identical across tadiphone dumps).",
+  "falcon": {
+    "package": "com.amazon.alexa.multimodal.falcon",
+    "stock": {
+      "url": "https://dumps.tadiphone.dev/dumps/facebook/aloha/-/raw/aloha_prod-user-9-PKQ1.191202.001-1041481900013050-prod-keys/system/system/app/amazon_alexa/amazon_alexa.apk",
+      "sha256": "d8f9e0aeec3f1d0a9e132643fc6d4fbbaf4e11e9955dc1bbcd6c1c4e3833e9db",
+      "note": "Public Portal firmware dump (tadiphone). We never host Amazon's binary; the user fetches stock from here."
+    },
+    "patch": {
+      "url": "https://github.com/starbrightlab/hey-dist/releases/latest/download/falcon.bsdiff",
+      "sha256": "6439a616c1b948d8edebe2db0f0239b70a6ece1bc8c3676338b3741d20a131a5",
+      "tool": "bspatch"
+    },
+    "result": {
+      "sha256": "861261445ddd4e42ae80d4646c9beb586ec93035ef91a0391ad87b965ab5d337",
+      "patches": ["getCurrentUser->0", "getIsAnonymous->FALSE", "audioSource HOTWORD->VOICE_RECOGNITION", "ExtListenReceiver(LISTEN)", "SimStateMachine TURN_DONE", "drop dee.app-shared <permission> declares (coexistence)"],
+      "coexistence_note": "Drops the <permission> declarations falcon shares with the pinned com.amazon.dee.app so both install. Conflict set is per-dee.app-version; this build targets the pinned consumer build. Standalone (free) falcon is unaffected — same-UID calls don't need them."
+    }
+  },
+  "millennium": {
+    "package": "com.millennium",
+    "url": "https://github.com/starbrightlab/hey-dist/releases/latest/download/millennium.apk",
+    "note": "Free wake-word build. Not yet published — pending release signing."
+  }
+}
