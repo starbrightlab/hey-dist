@@ -30,7 +30,7 @@
   "millennium": {
     "package": "com.millennium",
     "url": "https://github.com/starbrightlab/hey-dist/releases/latest/download/millennium.apk",
-    "sha256": "f346d7c8a9994aff741e83ea641006f4d440cbd338c3bcb8e1c5f1bef660f8fa",
+    "sha256": "bb799d232cafbb50a22568464f8cd4dde46a6d1ebbe67efa264ecdabf81e8b7d",
     "note": "Free wake-word build, signed with the dedicated millennium release key (cert sha256 7fe7883592d47c4d55e4f176c52090fca2711c00fc4d53787636a2615b810f42)."
   }
 }
