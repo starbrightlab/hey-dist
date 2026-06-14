@@ -1,18 +1,23 @@
 {
   "schema": 2,
-  "comment": "Data, not code. Maps the PUBLIC stock falcon APK + our binary patch so a client can reconstruct our patched+signed build byte-for-byte. Immortal's provisioner (provision.sh --alexa) and the future on-device installer read this. One falcon build serves all Portal families (the amazon_alexa APK is identical across tadiphone dumps).",
+  "comment": "Data, not code. PRIMARY: the patched+signed falcon APK hosted directly (falcon.apk) — one cross-platform download, no bspatch, no firmware-dump fetch. FALLBACK: reconstruct the byte-identical build from the public Portal firmware dump (stock) + our binary diff (patch) via bspatch. Immortal's provisioner downloads falcon.apk first and only falls back if its URL is blanked. One falcon build serves all Portal families.",
   "falcon": {
     "package": "com.amazon.alexa.multimodal.falcon",
+    "apk": {
+      "url": "https://github.com/starbrightlab/hey-dist/releases/download/v0.1.0/falcon.apk",
+      "sha256": "76133f807e492e46aaf58e6ae503e623a93af840eaa3eccfb8630f1ecab3268d",
+      "note": "Primary source: the patched+signed falcon, hosted directly. Cross-platform (Windows has no bspatch) and avoids the flaky firmware-dump fetch. Byte-identical to what the stock+patch reconstruction below produces."
+    },
     "stock": {
       "url": "https://dumps.tadiphone.dev/dumps/facebook/aloha/-/raw/aloha_prod-user-9-PKQ1.191202.001-1041481900013050-prod-keys/system/system/app/amazon_alexa/amazon_alexa.apk",
       "sha256": "d8f9e0aeec3f1d0a9e132643fc6d4fbbaf4e11e9955dc1bbcd6c1c4e3833e9db",
-      "note": "Public Portal firmware dump (tadiphone). We never host Amazon's binary; the user fetches stock from here."
+      "note": "Fallback path only: the unmodified stock falcon from the public Portal firmware dump (tadiphone), to which bspatch applies the diff below."
     },
     "patch": {
-      "url": "https://github.com/starbrightlab/hey-dist/releases/latest/download/falcon.bsdiff",
+      "url": "https://github.com/starbrightlab/hey-dist/releases/download/v0.1.0/falcon.bsdiff",
       "sha256": "1fd8412c874465c09fa172760da9fa4b9deb8f3a450ad88cf578b02a50fd00d0",
       "tool": "bspatch",
-      "note": "Surgical diff: only classes.dex (the 5 code patches) + AndroidManifest.xml differ from stock; all other entries are byte-identical."
+      "note": "Fallback diff: only classes.dex (the 5 code patches) + AndroidManifest.xml differ from stock; all other entries are byte-identical."
     },
     "result": {
       "sha256": "76133f807e492e46aaf58e6ae503e623a93af840eaa3eccfb8630f1ecab3268d",
@@ -24,7 +29,7 @@
         "SimStateMachine TURN_DONE",
         "drop 5 dee.app-shared <permission> declares (Portal+ aloha coexistence)"
       ],
-      "coexistence_note": "Drops the <permission> declarations falcon shares with the Portal+ (aloha) com.amazon.dee.app so both install. This is the A9-validated 'drop-5' build; Alexa revival ships on Android 9 Portals only (A10+ hard-blocks background mic). Standalone (free) falcon is unaffected \u2014 same-UID calls don't need them."
+      "coexistence_note": "Drops the <permission> declarations falcon shares with the Portal+ (aloha) com.amazon.dee.app so both install. This is the A9-validated 'drop-5' build; Alexa revival ships on Android 9 Portals only (A10+ hard-blocks background mic). Standalone (free) falcon is unaffected — same-UID calls don't need them."
     }
   },
   "millennium": {
